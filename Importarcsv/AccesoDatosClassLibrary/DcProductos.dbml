@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Productos" Class="DcProductosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Productos;Integrated Security=True" SettingsObjectName="AccesoDatosClassLibrary.Properties.Settings" SettingsPropertyName="ProductosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Tbl_Categoria" Member="Tbl_Categoria">
+    <Type Name="Tbl_Categoria">
+      <Column Name="cat_nombre" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cat_id" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="cat_descripcion" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="cat_status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="cat_fechacreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Tbl_Categoria_Tbl_Producto" Member="Tbl_Producto" ThisKey="cat_id" OtherKey="cat_id" Type="Tbl_Producto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tbl_Producto" Member="Tbl_Producto">
+    <Type Name="Tbl_Producto">
+      <Column Name="pro_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pro_codigo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="pro_nombre" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="pro_preciocompra" Type="System.Decimal" DbType="Decimal(8,4) NOT NULL" CanBeNull="false" />
+      <Column Name="pro_precioventa" Type="System.Decimal" DbType="Decimal(8,4) NOT NULL" CanBeNull="false" />
+      <Column Name="pro_descripcion" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="pro_stockminimo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pro_stockmaximo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pro_fechacreacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="pro_status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="cat_id" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="Tbl_Categoria_Tbl_Producto" Member="Tbl_Categoria" ThisKey="cat_id" OtherKey="cat_id" Type="Tbl_Categoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
