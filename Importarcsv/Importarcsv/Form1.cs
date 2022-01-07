@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace Importarcsv
 {
@@ -33,8 +34,24 @@ namespace Importarcsv
                 {
                     string[] celdas = lineas[i].Split(new[] { SEP }, StringSplitOptions.None);
                     tblProductos.Rows.Add(celdas);
+
                 }
+
             }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Data Source =.\SQLEXPRESS; Initial Catalog = Productos; Integrated Security = True
+            SqlConnection conexion = new SqlConnection("Data Source =.\\SQLEXPRESS; Initial Catalog = Productos; Integrated Security = True");
+            conexion.Open();
+            SqlBulkCopy exportar = default(SqlBulkCopy);
+            exportar = new SqlBulkCopy(conexion);
+            exportar.DestinationTableName = "Tbl_Producto";
+            //exportar.WriteToServer();
+            conexion.Close();
+            MessageBox.Show("exportacion exitosa");
         }
     }
 }
